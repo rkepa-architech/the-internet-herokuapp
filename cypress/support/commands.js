@@ -23,3 +23,19 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+import '@testing-library/cypress/add-commands';
+import 'cypress-plugin-snapshots/commands';
+
+Cypress.Commands.add('switchToIframe', (iframe) => {
+    return cy
+    .get(iframe)
+    .its('0.contentDocument.body')
+    .then(cy.wrap);
+});
+
+Cypress.Commands.add('switchToNestedFrame', (frame, nestedFrame) => {
+    return cy
+    .get(frame).its('0.contentDocument.body')
+    .find(nestedFrame).its('0.contentDocument.body')
+    .then(cy.wrap)
+});

@@ -1,9 +1,13 @@
 {
   "dependencies": {
-    "cypress": "^9.5.4"
+    "cypress": "^9.5.4",
+    "cypress-plugin-snapshots": "^1.4.4"
   },
   "scripts": {
     "cy:run": "cypress run",
     "cy:open": "cypress open"
+  },
+  "devDependencies": {
+    "@testing-library/cypress": "^8.0.2"
   }
 }
