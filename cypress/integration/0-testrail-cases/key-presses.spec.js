@@ -7,15 +7,19 @@ context('key-presses', () => {
     */
     it('C24 perform visual testing on Key Presses page', () => {
         cy.visit('/key_presses')
-        .then(() => {
-            cy.document().toMatchImageSnapshot();
-            cy.get('body').trigger('keydown', { keykode: 13, which: 13 })
             .then(() => {
-                cy.get('#result').toMatchImageSnapshot();
+                cy.document()
+                    .toMatchImageSnapshot();
 
-            })
+                cy.get('body')
+                    .trigger('keydown', { keykode: 13, which: 13 })
+                    .then(() => {
+                        cy.get('#result')
+                            .toMatchImageSnapshot();
 
-        });
+                    })
+
+            });
 
     });
 
@@ -48,8 +52,12 @@ context('key-presses', () => {
         const randIndex = Math.floor(Math.random() * keyboardMap.length);
         const myKey = keyboardMap[randIndex];
         
-        cy.get('body').trigger('keydown', { keykode: randIndex, which: randIndex });
-        cy.get('#result').should('contain', myKey).and('be.visible');
+        cy.get('body')
+            .trigger('keydown', { keykode: randIndex, which: randIndex });
+
+        cy.get('#result')
+            .should('contain', myKey)
+            .and('be.visible');
 
     });
 
