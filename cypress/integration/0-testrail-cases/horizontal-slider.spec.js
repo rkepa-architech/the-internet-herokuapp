@@ -9,24 +9,44 @@ it('C33 checks if button can be moved to the both right and left directions', ()
         var y = e.pageY;
         e.target.title = "X is "+x+" and Y is "+y;
     };
+    */
 
     cy.get('input')
-    .should('have.attr', 'min', '0.0')
-    .and('have.attr', 'max', '5.0')
-    .and('have.attr', 'step', '0.5');
+        .should('have.attr', 'min', '0.0')
+        .and('have.attr', 'max', '5.0')
+        .and('have.attr', 'step', '0.5');
 
     /*
     It only simulates clicking on the specific spot on the slider.
     It's in the Cypress docs though as a interaction with a range input (slider).
     */
-    cy.get('input').invoke('val', 5).trigger('change').click();
-    cy.get('#range').should('have.text', '5');
+    cy.get('input')
+        .invoke('val', 5)
+        .trigger('change')
+        .click();
+
+    cy.get('#range')
+        .should('have.text', '5');
+
     cy.wait(500); // added for better visibility
-    cy.get('input').invoke('val', 2.5).trigger('change').click();
-    cy.get('#range').should('have.text', '2.5');
+
+    cy.get('input')
+        .invoke('val', 2.5)
+        .trigger('change')
+        .click();
+
+    cy.get('#range')
+        .should('have.text', '2.5');
+
     cy.wait(500);
-    cy.get('input').invoke('val', 0).trigger('change').click();
-    cy.get('#range').should('have.text', '0');
+
+    cy.get('input')
+        .invoke('val', 0)
+        .trigger('change')
+        .click();
+
+    cy.get('#range')
+        .should('have.text', '0');
 
     /*
     Code below also moves the slider, but it doesn't change the value so #range displays 0.
